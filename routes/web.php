@@ -19,22 +19,23 @@ Route::namespace('Business')->prefix('business')->group(function(){
     //
     Route::get('/login','AuthController@index')->name('business.login');
     Route::get('/register','AuthController@index')->name('business.register');
-    Route::post('/login/log','AuthController@login');
-    Route::post('/register/create','AuthController@register');
+//    Route::post('/login/log','AuthController@login');
+//    Route::post('/register/create','AuthController@register');
 });
-
-//user
-Route::resource('profile','Api\ProfileController')->only(['update','index']);
-Route::get('/profileShow','Api\ProfileController@profileShow');
-Route::resource('/qrcode','Api\QrCodeController')->only(['create','index']);
-Route::post('/health-declaration','Api\HealthDeclarationController')->name('healthDeclaration');
-Route::post('/login','AuthController@login')->name('login');
-Route::post('/register','AuthController@register')->name('register');
-
-
 //
-Route::resource('scanner','ScannerController')->only(['show','store','edit']);
-Route::get('/logout','AuthController@logout');
-Route::get('/','AuthController@index');
-Route::get('{slug}','AuthController@index');
+////user
+Route::resource('profile','Api\ProfileController')->only(['index']);
+//Route::get('/profileShow','Api\ProfileController@profileShow');
+Route::resource('/qrcode','Api\QrCodeController')->only(['index']);
+//Route::post('/health-declaration','Api\HealthDeclarationController')->name('healthDeclaration');
+//Route::post('/login','AuthController@login')->name('login');
+//Route::post('/register','AuthController@register')->name('register');
+//
+//
+////
+Route::resource('scanner','ScannerController')->only(['show']);
+//Route::get('/logout','AuthController@logout');
+//Route::get('/','AuthController@index');
+//Route::get('{slug}','AuthController@index');
 
+Route::get('/{any}', 'AuthController@index')->where('any','^(?!api\/)[\/\w\.-]*');

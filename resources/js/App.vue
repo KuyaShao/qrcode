@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-md bg-dark border-bottom navbar-dark">
             <a class="navbar-brand mr-auto" href="#">QrCode Tracker</a>
             <div v-if="this.$store.state.user">
-                <a href="/logout" class="btn nav-button text-center white" >
+                <a href="/api/logout" class="btn nav-button text-center white" >
                     Log out
                 </a>
             </div>

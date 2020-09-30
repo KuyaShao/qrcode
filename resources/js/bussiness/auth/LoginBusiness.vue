@@ -77,7 +77,8 @@
         methods: {
             async login(){
                 this.isLoading = true
-                const res = await this.callApi('post','/business/login/log',this.loginData)
+                await axios.get('/sanctum/csrf-cookie')
+                const res = await this.callApi('post','/api/business/login/log',this.loginData)
                 if(res.status === 200){
                     this.s('Login Successfully')
                     window.location = '/profile'

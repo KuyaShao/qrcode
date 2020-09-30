@@ -43,7 +43,7 @@
             async scanner(){
                 this.loading = true
                 console.log(this.temperature)
-                const res = await this.callApi('post','/scanner',this.data)
+                const res = await this.callApi('post','/api/scanner',this.data)
                 if(res.status === 200 || res.status === 201){
                     this.s(res.data.msg)
                     window.location = '/qrcode'
@@ -61,7 +61,7 @@
 
         async created() {
             this.loading = true
-            const res = await this.callApi('get', `/scanner/${this.$route.params.id}/edit`)
+            const res = await this.callApi('get', `/api/scanner/${this.$route.params.id}/edit`)
             if (res.status === 200) {
                 this.user = res.data.profile.fullName
                 this.data.name = res.data.business.fullName
@@ -69,6 +69,11 @@
                 this.data.business_name = res.data.business.business_name
                 this.data.business_type = res.data.business.business_type
                 this.data.from = res.data.business.address
+            }else{
+                this.swr()
+                this.loading=true
+                window.location = '/qrcode'
+                this.loading = false
             }
             this.loading = false
         }

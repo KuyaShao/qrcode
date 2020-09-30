@@ -12,13 +12,13 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:sanctum');
 
     }
 
     public function index()
     {
-        $profiles = auth()->user()->profiles;
+        $profiles = Auth::user()->profiles;
         if ($profiles->city === null) {
             return view('welcome');
         }
@@ -27,6 +27,7 @@ class ProfileController extends Controller
 
     public function profileShow()
     {
+
         $user = Auth::user();
 
         if ($user->userType === 'business') {
@@ -37,8 +38,11 @@ class ProfileController extends Controller
         }
         return response()->json([
             'qid' => auth()->user()->profiles->qid,
+            'city' => auth()->user()->profiles->city,
             'userType' => 'user'
         ]);
+
+
     }
 
 

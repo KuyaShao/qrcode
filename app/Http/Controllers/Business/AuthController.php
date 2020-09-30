@@ -42,25 +42,26 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request){
 
-        $role = Role::where('name','user')->first();
+
         $user = User::create([
             'firstName'=>$request->firstName,
             'middleName'=>$request->middleName,
             'lastName'=>$request->lastName,
             'email'=>$request->email,
             'userType'=>'business',
-            'password'=>bcrypt($request->password)
+            'password'=>bcrypt($request->password),
+            'classification'=>'Safe'
         ]);
 
         $user->profiles()->create([
             'user_id'=>$user->id,
             'qid'=>Str::uuid(),
         ]);
+
         $profile = $user->profiles->id;
         HealthDeclaration::create([
             'profile_id'=>$profile
         ]);
-        $user->role()->attach($role);
 
         return $user;
     }

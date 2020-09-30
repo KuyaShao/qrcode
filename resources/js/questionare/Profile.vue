@@ -1,6 +1,7 @@
 <template>
     <div class="row">
-        <div class="col-md-8 col-sm-8 col-lg-8 mx-auto">
+        <div v-if="loading">Loading</div>
+        <div v-else class="col-md-8 col-sm-8 col-lg-8 mx-auto">
             <div class="card mb-4 mx-auto" style="width: 24rem;">
                 <div class="card-body">
                     <h5 class="card-title text-uppercase text-muted text-center">
@@ -57,7 +58,7 @@
                     <div class="form-group" v-if="userType === 'business'">
                         <label for="business_type">Business Type</label>
                         <select class="form-control" v-model="profileData.business_type"
-                            :class="[{'is-invalid' :this.errorFor('business_type')}]"
+                                :class="[{'is-invalid' :this.errorFor('business_type')}]"
                         >
                             <option value=""></option>
                             <option value="food">Food</option>
@@ -171,14 +172,14 @@
                     city: null,
                     street: null,
                     province: null,
-                    business_name:'',
-                    business_type:''
+                    business_name: '',
+                    business_type: ''
                 },
                 contact_number: null,
                 qid: null,
                 errors: null,
                 loading: false,
-                userType:null
+                userType: null
             }
         },
 
@@ -186,25 +187,25 @@
             customFormatter(date) {
                 return moment(date).format('MMMM Do YYYY');
             },
-            dates(birthday){
-                this.profileData.birthday = birthday === null?
-                    null:moment(birthday).format('YYYY-MM-DD') ;
+            dates(birthday) {
+                this.profileData.birthday = birthday === null ?
+                    null : moment(birthday).format('YYYY-MM-DD');
             },
             async profile() {
                 console.log(this.profileData.business_name)
-                if(this.userType === 'business'){
-                    if(this.profileData.business_name.trim() === '') this.errors = {busines_name:['BusinessName was required']}
-                    if(this.profileData.business_type.trim() === '') this.errors = {busines_type:['BusinessName was required']}
+                if (this.userType === 'business') {
+                    if (this.profileData.business_name.trim() === '') this.errors = {busines_name: ['BusinessName was required']}
+                    if (this.profileData.business_type.trim() === '') this.errors = {busines_type: ['BusinessName was required']}
                 }
                 this.loading = true
                 this.dates(this.profileData.birthday)
-                const res = await this.callApi('put', `/profile/${this.qid}`, this.profileData)
+                const res = await this.callApi('put', `/api/profile/${this.qid}`, this.profileData)
                 if (res.status === 200) {
                     this.s(res.data.msg)
-                    if(this.userType === 'user'){
-                        window.location='/questionare'
-                    }else{
-                        window.location='/questionare'
+                    if (this.userType === 'user') {
+                        window.location = '/questionare'
+                    } else {
+                        window.location = '/questionare'
                     }
 
                 } else {
@@ -223,16 +224,23 @@
                 return 422 === this.status || this.errors !== null
             },
         },
+
         async created() {
-            const res = await this.callApi('get', '/profileShow')
+            this.loading = true
+            const res = await this.callApi('get', '/api/profileShow')
+
+
             if (res.status === 200) {
                 this.qid = res.data.qid
                 this.userType = res.data.userType
-                console.log(this.profileData.business_name)
+
 
             } else {
                 this.swr()
             }
+
+
+            this.loading = false
         }
     }
 </script>

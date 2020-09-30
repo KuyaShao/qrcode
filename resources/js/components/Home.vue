@@ -42,7 +42,7 @@
         },
         async created() {
             this.loading = true
-            const res = await this.callApi('get','/qrcode/create')
+            const res = await this.callApi('get','/api/qrcode/create')
             if(res.status === 200){
                 this.userType = res.data.userType
                 let currentUrl = window.location.origin +'/scanner'

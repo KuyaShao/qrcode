@@ -37,14 +37,14 @@ class AuthController extends Controller
         } else {
             return response()->json([
                 'msg' => 'Incorrect login details'
-            ]);
+            ],401);
         }
 
         $user = Auth::user();
         if ($user->userType === 'user') {
             return response()->json([
                 'msg' => 'your logged in'
-            ]);
+            ],200);
         }else{
             Auth::logout();
             return response()->json([
@@ -52,34 +52,60 @@ class AuthController extends Controller
             ], 401);
         }
     }
-
+//
     public function logout()
     {
         Auth::logout();
         return redirect('/login');
     }
+//
+//
+//    public function register(RegisterRequest $request){
+//
+//        $user = User::create([
+//            'firstName'=>$request->firstName,
+//            'middleName'=>$request->middleName,
+//            'lastName'=>$request->lastName,
+//            'email'=>$request->email,
+//            'password'=>bcrypt($request->password),
+//            'classification'=>'Safe'
+//        ]);
+//
+//        $user->profiles()->create([
+//            'user_id'=>$user->id,
+//            'qid'=>Str::uuid(),
+//        ]);
+//
+//        $profile = $user->profiles->id;
+//        HealthDeclaration::create([
+//            'profile_id'=>$profile
+//        ]);
+//
+//
+//        return $user;
+//    }
 
-
-    public function register(RegisterRequest $request){
-
-        $role = Role::where('name','user')->first();
+    public function register(RegisterRequest $request)
+    {
         $user = User::create([
-            'firstName'=>$request->firstName,
-            'middleName'=>$request->middleName,
-            'lastName'=>$request->lastName,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password)
+            'firstName' => $request->firstName,
+            'middleName' => $request->middleName,
+            'lastName' => $request->lastName,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'classification' => 'Safe'
         ]);
 
         $user->profiles()->create([
-            'user_id'=>$user->id,
-            'qid'=>Str::uuid(),
+            'user_id' => $user->id,
+            'qid' => Str::uuid(),
         ]);
+
         $profile = $user->profiles->id;
         HealthDeclaration::create([
-            'profile_id'=>$profile
+            'profile_id' => $profile
         ]);
-        $user->role()->attach($role);
+
 
         return $user;
     }

@@ -88,6 +88,7 @@
                     </div>
                     <button
                         @click="register"
+                        :loading="isAdding"
                         :disabled="isAdding"
                         class="btn btn-secondary btn-block"
                     >Register
@@ -111,6 +112,7 @@
 </template>
 
 <script>
+   // import csrf from "../csrf";
     export default {
         name: "Register",
         data() {
@@ -132,11 +134,12 @@
         methods: {
 
             async register() {
-                const res = await this.callApi('post', '/register', this.registerData)
                 this.isAdding = true
+                await axios.get('/sanctum/csrf-cookie')
+                const res = await this.callApi('post', '/api/register', this.registerData)
                 if (res.status === 200 || res.status === 201) {
                     this.s('Successfully Register')
-                    window.location = '/profile'
+                   window.location = '/profile'
                 } else {
                     if (res.status === 422) {
                         this.errors = res.data.errors

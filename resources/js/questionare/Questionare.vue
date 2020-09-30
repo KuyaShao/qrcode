@@ -266,7 +266,7 @@
         methods: {
             async healthDeclaration(){
                 this.loading = true
-                const res = await this.callApi('post','/health-declaration',this.data)
+                const res = await this.callApi('post','/api/health-declaration',this.data)
                 if(res.status === 200){
                     this.s(res.data.msg)
                     window.location = `/qrcode`

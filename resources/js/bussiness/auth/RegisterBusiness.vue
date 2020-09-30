@@ -130,7 +130,8 @@
         methods: {
 
             async register() {
-                const res = await this.callApi('post', '/business/register/create', this.registerData)
+                await axios.get('/sanctum/csrf-cookie')
+                const res = await this.callApi('post', '/api/business/register/create', this.registerData)
                 this.isAdding = true
                 if (res.status === 200 || res.status === 201) {
                     this.s('Successfully Register a Business')

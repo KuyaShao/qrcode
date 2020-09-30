@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 class TrustProxies extends Middleware
 {
 
-    protected $proxies = '**';
-    protected $headers = Request::HEADER_X_FORWARDED_AWS_ELB;
+
     /**
      * The trusted proxies for this application.
      *

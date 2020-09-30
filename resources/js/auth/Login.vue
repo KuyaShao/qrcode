@@ -1,7 +1,7 @@
 <template>
     <div class="row ">
         <div class="col-md-8 col-sm-8 col-lg-8 mx-auto">
-            <div class="card mx-auto" style="width: 24rem">
+            <div class="card mx-auto" style="width:24em;">
                 <div class="card-body">
                     <h5 class="card-title text-center text-muted text-uppercase">
                         login
@@ -38,7 +38,8 @@
                     <button
                         class="btn btn-secondary btn-block"
                         @click="login" :disabled="isLoading"
-                        :loading="isLoading">Login</button>
+                        :loading="isLoading">Login
+                    </button>
                     <div class="text-center mt-3">
                         <a href="#" class="text-muted">Forgot Password</a>
                     </div>
@@ -75,22 +76,24 @@
         },
 
         methods: {
-            async login(){
+            async login() {
                 this.isLoading = true
-                const res = await this.callApi('post','/login',this.loginData)
-                if(res.status === 200){
+                await axios.get('/sanctum/csrf-cookie')
+                const res = await this.callApi('post', '/api/logins', this.loginData)
+                if (res.status === 200) {
                     this.s('Login Successfully')
                     window.location = '/profile'
-                }else{
-                    if(res.status === 422){
+                } else {
+                    if (res.status === 422) {
                         this.errors = res.data.errors
                     }
-                    if(res.status === 401){
-                       this.e(res.data.msg)
+                    if (res.status === 401) {
+                        this.e(res.data.msg)
                     }
 
                     this.swr()
                 }
+
                 this.isLoading = false
 
             },
@@ -110,7 +113,7 @@
             noUsers() {
                 return 404 === this.status;
             }
-        }
+        },
     }
 </script>
 
@@ -121,11 +124,13 @@
         color: gray;
         font-weight: bolder;
     }
-    .is-invalid{
-        border-color:#b22222;
-        background-image:none;
+
+    .is-invalid {
+        border-color: #b22222;
+        background-image: none;
     }
-    .invalid-feedback{
-        color:#b22222;
+
+    .invalid-feedback {
+        color: #b22222;
     }
 </style>

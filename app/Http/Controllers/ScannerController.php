@@ -16,7 +16,8 @@ class ScannerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:sanctum');
+
     }
 
     public function show($qid){
@@ -24,6 +25,7 @@ class ScannerController extends Controller
     }
 
     public function edit($qid){
+       // return $qid;
         $profile = Profile::where('qid',$qid)->first();
         $user = User::where('id',$profile->user_id)->first();
 
