@@ -4,52 +4,54 @@
             <div v-if="loading">Loading...</div>
             <div v-else class="card mx-auto">
                 <div class="card-body">
-                    <div v-if="userType === 'user'">
-                        <h5 class="text-muted card-title text-uppercase text-center">
-                            Please Screenshot and Save this QRCODE!
-                        </h5>
+                    <div v-if="loading">Loading...</div>
+                    <div v-else>
+                        <div v-if="userType === 'user'">
+                            <qrcode-reader :value="value"></qrcode-reader>
+                        </div>
+                        <div v-else>
+                            <qrcode-scanner></qrcode-scanner>
+                        </div>
                     </div>
-                   <div v-else>
-                       <h5 class="text-muted card-title text-uppercase text-center">
-                           Please Screenshot and Save this QRCODE and Download any Scanner on playstore in order for you to scan qrcodes!
-                       </h5>
-                   </div>
-                    <div class="text-center mt-3">
-                        <qrcode-vue :value="value" :size="size" level="H"></qrcode-vue>
-                    </div>
-
                 </div>
             </div>
+            <h6 class="text-center text-muted">#WeHealAsOne #AkoTayoAngMariveles</h6>
         </div>
+
     </div>
+
 </template>
 
 <script>
-    import QrcodeVue from 'qrcode.vue'
+    import QrcodeReader from "./QrcodeReader";
+    import QrcodeScanner from "./QrcodeScanner";
+
     export default {
         name: "Home",
-        components:{
-            QrcodeVue
+        components: {
+            QrcodeReader,
+            QrcodeScanner
         },
-        data(){
-            return{
-                value:"https://example.com" ,
-                size:100,
-                userType:null,
-                loading:false
+        data() {
+            return {
+                value: "https://example.com",
+                size: 100,
+                userType: null,
+                loading: false
             }
 
         },
         async created() {
             this.loading = true
-            const res = await this.callApi('get','/api/qrcode/create')
-            if(res.status === 200){
+            const res = await this.callApi('get', '/api/qrcode/create')
+            if (res.status === 200) {
                 this.userType = res.data.userType
-                let currentUrl = window.location.origin +'/scanner'
-                this.value = `${currentUrl}/${res.data.qid}`
+                // let currentUrl = window.location.origin +'/scanner'
+                this.value = res.data.qid
             }
             this.loading = false
         }
+
     }
 </script>
 

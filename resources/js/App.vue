@@ -1,15 +1,19 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-md bg-dark border-bottom navbar-dark">
-            <a class="navbar-brand mr-auto" href="#">QrCode Tracker</a>
-            <div v-if="this.$store.state.user">
-                <a href="/api/logout" class="btn nav-button text-center white" >
-                    Log out
-                </a>
-            </div>
-            <div v-else>
-                <router-link class="btn nav-button text-center  white" :to="{name:'login'}">Client</router-link>
-                <router-link class="btn nav-button text-center  white" :to="{name:'login-business'}">Business</router-link>
+        <nav class="navbar navbar-expand-md pink border-bottom navbar-dark">
+            <a class="navbar-brand" href="#">Mariveles QrCode Trace</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div class="ml-auto" v-if="this.$store.state.user">
+                    <router-link class="btn nav-button text-center white" :to="{name:'home'}">Home</router-link>
+                    <router-link class="btn nav-button text-center white" :to="{name:'diary'}">My Diary</router-link>
+                    <a href="/api/logout" class="btn nav-button text-center white">
+                        Log out
+                    </a>
+                </div>
             </div>
         </nav>
         <div class="container mt-4">
@@ -21,7 +25,7 @@
 <script>
     export default {
         name: "App",
-        props:['user'],
+        props: ['user'],
         data: () => ({
             isLogin: false
         }),
@@ -32,8 +36,15 @@
 </script>
 
 <style scoped>
-    .white{
+    .white {
         color: white;
         font-weight: bold;
+    }
+
+    .pink {
+        background-color: #f56a79;
+    }
+    .white:hover{
+        background-color: #9ab3f5;
     }
 </style>

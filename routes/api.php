@@ -46,7 +46,8 @@ Route::get('/login','AuthController@index')->name('login');
 Route::post('/logins','AuthController@login');
 //Route::post('/register','AuthController@register')->name('register');
 Route::post('/register','AuthController@register');
-
+Route::get('/name','Api\QrCodeController@names')->middleware('auth:sanctum');
+Route::get('/diaries','Api\DiaryController@index')->middleware('auth:sanctum');
 //
 Route::apiResource('scanner','ScannerController')->only(['edit','store']);
 Route::get('/logout','AuthController@logout');

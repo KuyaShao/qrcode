@@ -205,7 +205,7 @@
                     if (this.userType === 'user') {
                         window.location = '/questionare'
                     } else {
-                        window.location = '/questionare'
+                        window.location = '/qrcode'
                     }
 
                 } else {

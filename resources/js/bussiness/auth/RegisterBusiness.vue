@@ -4,7 +4,7 @@
             <div class="card mx-auto" style="width: 24rem">
                 <div class="card-body">
                     <h5 class="card-title text-center text-uppercase text-muted">
-                        Register for business
+                        Register Business
                     </h5>
                     <div class="form-group">
                         <label for="firstName">First Name</label>
@@ -70,28 +70,72 @@
                             {{error}}
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="password">Password</label>
+                        <div class="input-group">
+
+                            <input
+                                :type="showPassword"
+                                class="form-control"
+                                placeholder="Enter a Password"
+                                v-model="registerData.password"
+                                @keyup.enter="register"
+                                data-toggle="password"
+                                :class="[{'is-invalid':this.errorFor('password')}]">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" @click="showVisibility">
+                                    <i v-if="showPassword === 'password'" class="fa fa-eye"></i>
+                                    <i v-if="showPassword === 'text'" class="fa fa-eye-slash"></i>
+                                </button>
+
+                            </div>
+                            <div
+                                class="invalid-feedback"
+                                v-for="(error,i) in this.errorFor('password')" :key="'Email' + i">
+                                {{error}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password</label>
                         <input
-                            type="password"
+                            :type="showPassword"
                             class="form-control"
                             placeholder="Enter a Password"
-                            v-model="registerData.password"
+                            v-model="registerData.password_confirmation"
                             @keyup.enter="register"
-                            :class="[{'is-invalid':this.errorFor('password')}]">
+                            :class="[{'is-invalid':this.errorFor('password_confirmation')}]">
                         <div
                             class="invalid-feedback"
-                            v-for="(error,i) in this.errorFor('password')" :key="'Email' + i">
+                            v-for="(error,i) in this.errorFor('password_confirmation')" :key="'Email' + i">
                             {{error}}
                         </div>
                     </div>
+                    <div class="form-group">
+                        <input class="form-control-check-input" type="checkbox" v-model="registerData.privacy" id="defaultCheck1"
+                               :class="[{'is-invalid':this.errorFor('privacy')}]"
+                        >
+                        <label class="form-check-label" for="defaultCheck1">
+                            I Agree to <a href="#" data-toggle="modal" data-target="#exampleModalLong">Data Privacy
+                            Consent.</a>
+                        </label>
+                        <div
+                            class="invalid-feedback"
+                            v-for="(error,i) in this.errorFor('privacy')" :key="'Email' + i">
+                            {{error}}
+                        </div>
+                        <privacy></privacy>
+                    </div>
+
                     <button
                         @click="register"
+                        :loading="isAdding"
                         :disabled="isAdding"
-                        class="btn btn-secondary btn-block"
-                    >Register
+                        class="btn btn-primary btn-block mt-3"
+                    >Submit
                     </button>
+
                 </div>
 
             </div>
@@ -120,15 +164,20 @@
                     middleName: '',
                     lastName: '',
                     email: '',
-                    password: ''
+                    password: '',
+                    password_confirmation:'',
+                    privacy:''
                 },
+                showPassword:'password',
                 errors: null,
                 isAdding: false
             }
         },
 
         methods: {
-
+            showVisibility(){
+                this.showPassword = this.showPassword === 'password' ? 'text' : 'password'
+            },
             async register() {
                 await axios.get('/sanctum/csrf-cookie')
                 const res = await this.callApi('post', '/api/business/register/create', this.registerData)

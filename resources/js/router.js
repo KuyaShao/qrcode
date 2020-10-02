@@ -8,6 +8,7 @@ import Questionare from "./questionare/Questionare";
 import Profile from "./questionare/Profile"
 import Home from "./components/Home";
 import Scanner from "./components/Scanner";
+import Diary from "./components/Diary";
 Vue.use(VueRouter)
 
 const routes = [
@@ -54,6 +55,11 @@ const routes = [
         path: '/scanner/:id',
         component: Scanner,
         name: 'scanner'
+    },
+    {
+        path: '/diary',
+        component: Diary,
+        name: 'diary'
     }
 
 ];

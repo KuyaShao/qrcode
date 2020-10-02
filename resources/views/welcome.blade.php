@@ -7,17 +7,17 @@
     <title>QrCode Tracker</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+
 </head>
 <body>
-    <div id="app">
-        @if(Auth::check())
-            <main-app :user="{{Auth::user()}}"></main-app>
-        @else
-            <main-app></main-app>
-        @endif
-    </div>
+<div id="app">
+    @if(Auth::check())
+        <main-app :user="{{Auth::user()}}"></main-app>
+    @else
+        <main-app></main-app>
+    @endif
+</div>
 </body>
 <script src="{{asset('js/app.js')}}"></script>
 </html>

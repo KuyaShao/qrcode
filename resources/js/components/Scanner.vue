@@ -5,16 +5,13 @@
             <div class="card mx-auto" style="width: 18rem;">
                 <div class="card-body text-center">
                     <h5 class="card-title text-muted text-uppercase text-center">
-                        Pass this data
+                        {{this.user}}
                     </h5>
-                    <div class="mt-4">
-                        <label>{{this.user}}</label>
-                        <p>Client Name</p>
-                    </div>
+
 
                     <div class="form-group mt-2">
-                        <input type="text" v-model="data.temperature" class="form-control" placeholder="Temperature">
-                        <label for="temperature" class="text-center" >Temperature</label>
+                        <input type="number" v-model="data.temperature" class="form-control" placeholder="00.0">
+                        <label for="temperature" class="text-center" >Insert Temperature</label>
                     </div>
                     <button class="btn btn-secondary btn-block" @click="scanner" :loading="loading" :disabled="loading">Submit</button>
                 </div>
@@ -42,10 +39,8 @@
         methods: {
             async scanner(){
                 this.loading = true
-                console.log(this.temperature)
                 const res = await this.callApi('post','/api/scanner',this.data)
                 if(res.status === 200 || res.status === 201){
-                    this.s(res.data.msg)
                     window.location = '/qrcode'
                 }else{
                     if(res.status === 422){

@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <button
-                        class="btn btn-secondary btn-block"
+                        class="btn btn-primary btn-block"
                         @click="login" :disabled="isLoading"
                         :loading="isLoading">Login
                     </button>
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="card mt-3 pt-3 mx-auto" style="width: 24rem">
+            <div class="card mt-3 pt-3 mx-auto"  style="width:24em;">
                 <div class="card-body text-center">
                     <p class="text-muted">
                         Dont have an account?

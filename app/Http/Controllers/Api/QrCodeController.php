@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProfileResource;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +28,17 @@ class QrCodeController extends Controller
             return redirect('/profile');
         }
 
-        if($profile->healthDeclaration->q1a === null){
-            return redirect('/questionare');
-        }
+
         return view('welcome');
     }
-
+    public function names(){
+         $user = Auth::user();
+         $profile = Auth::user()->profiles()->first();
+        return response()->json([
+            'names'=>$user,
+            'business'=>$profile
+        ]);
+    }
     public function create(){
         $qid = Auth::user()->profiles->qid;
         $userType = Auth::user()->userType;

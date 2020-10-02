@@ -4,7 +4,7 @@
             <div class="card mx-auto" style="width: 24rem">
                 <div class="card-body">
                     <h5 class="card-title text-center text-muted text-uppercase">
-                        login for business
+                        Business Login
                     </h5>
                     <div class="form-group">
                         <label for="email" class="text-muted">Email Address</label>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <button
-                        class="btn btn-secondary btn-block"
+                        class="btn btn-primary btn-block"
                         @click="login" :disabled="isLoading"
                         :loading="isLoading">Login</button>
                     <div class="text-center mt-3">
