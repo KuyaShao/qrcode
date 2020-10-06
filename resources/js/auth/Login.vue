@@ -16,7 +16,7 @@
                             @keyup.enter="login"
                             :class="[{'is-invalid':this.errorFor('email')}]">
                         <div class="invalid-feedback" v-for="(error,i) in this.errorFor('email')" :key="'Email' + i">
-                            {{error}}
+                            {{ error }}
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@
 
                         <div class="invalid-feedback" v-for="(error,i) in this.errorFor('password')"
                              :key="'Password' + i">
-                            {{error}}
+                            {{ error }}
                         </div>
                     </div>
                     <button
@@ -41,12 +41,16 @@
                         :loading="isLoading">Login
                     </button>
                     <div class="text-center mt-3">
-                        <a href="#" class="text-muted">Forgot Password</a>
+                        <p class="text-muted">
+                            <router-link :to="{name:'reset-password'}">
+                                Forgot Password
+                            </router-link>
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="card mt-3 pt-3 mx-auto"  style="width:24em;">
+            <div class="card mt-3 pt-3 mx-auto" style="width:24em;">
                 <div class="card-body text-center">
                     <p class="text-muted">
                         Dont have an account?
@@ -61,76 +65,76 @@
 </template>
 
 <script>
-    export default {
-        name: "Login",
+export default {
+    name: "Login",
 
-        data() {
-            return {
-                loginData: {
-                    email: '',
-                    password: ''
-                },
-                errors: null,
-                isLoading: false
-            }
-        },
+    data() {
+        return {
+            loginData: {
+                email: '',
+                password: ''
+            },
+            errors: null,
+            isLoading: false
+        }
+    },
 
-        methods: {
-            async login() {
-                this.isLoading = true
-                await axios.get('/sanctum/csrf-cookie')
-                const res = await this.callApi('post', '/api/logins', this.loginData)
-                if (res.status === 200) {
-                    this.s('Login Successfully')
-                    window.location = '/profile'
-                } else {
-                    if (res.status === 422) {
-                        this.errors = res.data.errors
-                    }
-                    if (res.status === 401) {
-                        this.e(res.data.msg)
-                    }
-
-                    this.swr()
+    methods: {
+        async login() {
+            this.isLoading = true
+            await axios.get('/sanctum/csrf-cookie')
+            const res = await this.callApi('post', '/api/logins', this.loginData)
+            if (res.status === 200) {
+                this.s('Login Successfully')
+                window.location = '/profile'
+            } else {
+                if (res.status === 422) {
+                    this.errors = res.data.errors
+                }
+                if (res.status === 401) {
+                    this.e(res.data.msg)
                 }
 
-                this.isLoading = false
-
-            },
-
-            errorFor(field) {
-                return this.hasErrors && this.errors[field] ? this.errors[field] : null
+                this.swr()
             }
-        },
-        computed: {
-            hasErrors() {
-                return 422 === this.status || this.errors !== null
-            },
-            hasUsers() {
-                return 200 === this.status
-            },
 
-            noUsers() {
-                return 404 === this.status;
-            }
+            this.isLoading = false
+
         },
-    }
+
+        errorFor(field) {
+            return this.hasErrors && this.errors[field] ? this.errors[field] : null
+        }
+    },
+    computed: {
+        hasErrors() {
+            return 422 === this.status || this.errors !== null
+        },
+        hasUsers() {
+            return 200 === this.status
+        },
+
+        noUsers() {
+            return 404 === this.status;
+        }
+    },
+}
 </script>
 
 <style scoped>
-    label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        color: gray;
-        font-weight: bolder;
-    }
+label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: gray;
+    font-weight: bolder;
+}
 
-    .is-invalid {
-        border-color: #b22222;
-        background-image: none;
-    }
+.is-invalid {
+    border-color: #b22222;
+    background-image: none;
+}
 
-    .invalid-feedback {
-        color: #b22222;
-    }
+.invalid-feedback {
+    color: #b22222;
+}
 </style>

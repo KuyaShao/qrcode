@@ -10,10 +10,20 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Hash;
+use Illuminate\Auth\Events\PasswordReset;
 
 class AuthController extends Controller
 {
-    public function index(Request $request){
+    use SendsPasswordResetEmails, ResetsPasswords {
+        SendsPasswordResetEmails::broker insteadof ResetsPasswords;
+        ResetsPasswords::credentials insteadof SendsPasswordResetEmails;
+    }
+
+    public function index(Request $request)
+    {
         if (!Auth::check() && $request->path() != 'login') {
             return redirect('/login');
         }
@@ -31,32 +41,82 @@ class AuthController extends Controller
         }
         return redirect('/login');
     }
-    public function login(LoginRequest $request){
+
+    public function login(LoginRequest $request)
+    {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
         } else {
             return response()->json([
                 'msg' => 'Incorrect login details'
-            ],401);
+            ], 401);
         }
 
         $user = Auth::user();
         if ($user->userType === 'user') {
             return response()->json([
                 'msg' => 'your logged in'
-            ],200);
-        }else{
+            ], 200);
+        } else {
             Auth::logout();
             return response()->json([
                 'msg' => 'Incorrect login details'
             ], 401);
         }
     }
+
 //
     public function logout()
     {
+        $user = Auth::user();
         Auth::logout();
-        return redirect('/login');
+        if ($user->userType === 'user') {
+            return redirect('/login');
+        } else {
+            return redirect('/business/login');
+        }
+
+
+    }
+
+    public function sendPasswordResetLink(Request $request)
+    {
+        return $this->sendResetLinkEmail($request);
+    }
+
+    protected function resetPassword($user, $password)
+    {
+        $user->password = Hash::make($password);
+        $user->save();
+        event(new PasswordReset($user));
+    }
+
+    protected function sendResetLinkResponse(Request $request, $response)
+    {
+        return response()->json([
+            'message' => 'Password reset email sent.',
+            'data' => $response
+        ]);
+    }
+
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return response()->json(['message' => 'Email could not be sent to this email address.']);
+    }
+
+    public function callResetPassword(Request $request)
+    {
+        return $this->reset($request);
+    }
+
+    protected function sendResetResponse(Request $request, $response)
+    {
+        return response()->json(['message' => 'Password reset successfully.']);
+    }
+
+    protected function sendResetFailedResponse(Request $request, $response)
+    {
+        return response()->json(['message' => 'Failed, Invalid Token.']);
     }
 //
 //

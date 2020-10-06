@@ -9,6 +9,8 @@ import Profile from "./questionare/Profile"
 import Home from "./components/Home";
 import Scanner from "./components/Scanner";
 import Diary from "./components/Diary";
+import ResetPassword from "./ResetPassword";
+import ForgetPassword from "./ForgetPassword";
 Vue.use(VueRouter)
 
 const routes = [
@@ -60,7 +62,18 @@ const routes = [
         path: '/diary',
         component: Diary,
         name: 'diary'
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: ResetPassword,
+    },
+    {
+        path: '/reset-password/:token',
+        name: 'reset-password-form',
+        component: ForgetPassword,
     }
+
 
 ];
 

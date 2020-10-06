@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>QrCode Tracker</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('/image/logo.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('/image/logo.png')}}">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">

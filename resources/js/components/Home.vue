@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div  class="row">
         <div class="col-md-8 col-sm-8 col-lg-8 mx-auto">
             <div v-if="loading">Loading...</div>
             <div v-else class="card mx-auto">
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <h6 class="text-center text-muted">#WeHealAsOne #AkoTayoAngMariveles</h6>
+            <h6 class="text-center text-muted mb-4 mt-3">#WeHealAsOne #AkoTayoAngMariveles</h6>
         </div>
 
     </div>

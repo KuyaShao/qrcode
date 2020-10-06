@@ -141,7 +141,7 @@
                         </div>
                     </div>
                     <button
-                        class="btn btn-block btn-secondary"
+                        class="btn btn-block btn-primary"
                         @click="profile"
                         :loading="loading"
                         :disabled="loading"

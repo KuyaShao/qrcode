@@ -211,7 +211,7 @@
 
                         <div class="pt3">
                             <h6 class="text-muted">
-                                I hereby authorize QrCodeTracker Philippines to collect and process the data indicated in this survey for the purpose of effecting control of the COVID-19 infection.
+                                I hereby authorize Local Government Unit of Mariveles Bataan Philippines to collect and process the data indicated in this survey for the purpose of effecting control of the COVID-19 infection.
                                 I understand that my personal information is protected by RA 10173, Data Privacy Act of 2012,
                                 that I am required by RA 11469, Bayanihan to Heal As One Act,
                                 to provide truthful information, and that this health declaration is in accordance with memoranda
@@ -227,7 +227,7 @@
 
 
                     <button
-                        class="btn btn-block btn-secondary"
+                        class="btn btn-block btn-primary"
                         @click="healthDeclaration"
                         :loading="loading"
                         :disabled="loading"

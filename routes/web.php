@@ -32,7 +32,7 @@ Route::resource('/qrcode','Api\QrCodeController')->only(['index']);
 //Route::post('/register','AuthController@register')->name('register');
 //
 //
-////
+///
 Route::resource('scanner','ScannerController')->only(['show']);
 //Route::get('/logout','AuthController@logout');
 //Route::get('/','AuthController@index');

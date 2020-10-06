@@ -9,6 +9,9 @@ import 'view-design/dist/styles/iview.css';
 import router from './router'
 import common from "./common";
 import store from "./store";
+
+
+
 Vue.use(ViewUI);
 Vue.mixin(common)
 Vue.component('main-app', require('./App.vue').default);

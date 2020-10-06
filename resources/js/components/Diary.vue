@@ -4,17 +4,15 @@
         <div v-else>
             <h1 class="text-center text-uppercase">My Diary</h1>
             <table class="table table-striped">
-                <thead class="thead-primary">
+                <thead class="thead-primary text-center">
                 <tr>
-                    <th>Full Name</th>
                     <th>Business Name</th>
                     <th>Time</th>
                     <th>Date</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                 <tr v-for="(diaries,i) in diary" :key="i">
-                    <td>{{diaries.fullName}}</td>
                     <td>{{diaries.business_name}}</td>
                     <td>{{timeFormatter(diaries.time)}}</td>
                     <td>{{diaries.date}}</td>
@@ -48,18 +46,20 @@
                 return moment(time).format('hh:mm A');
             },
             async getLogo(page = 1){
+                this.loading = true
                 const res = await this.callApi('get', `/api/diaries?page=${page}&total=${this.total}`);
                 if (res.status === 200) {
                     this.diary = res.data.data;
                     this.pageInfo = res.data
                 }
+                this.loading = false
             },
         },
 
         async created() {
-            this.loading = true
-            this.getLogo();
-            this.loading = false
+
+                this.getLogo();
+
         }
     }
 </script>

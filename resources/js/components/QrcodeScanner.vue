@@ -1,20 +1,20 @@
 <template>
     <div>
-        <h5 class="text-muted card-title text-uppercase text-center">
-          Hello
-        </h5>
-        <h5 class="text-muted card-title text-uppercase text-center">
-            {{names.bussiness_name}}
-        </h5>
-        <h5 class="text-muted card-title text-uppercase text-center">
-            QrCode Scanner
-        </h5>
         <div class="text-center mt-3">
             <p class="error">{{ error }}</p>
             <p>{{result}}</p>
             <qrcode-stream @decode="onDecode" @init="onInit"/>
 
         </div>
+        <div class="mt-3">
+            <h5 class="text-muted card-title text-uppercase text-center">
+                {{names.bussiness_name}}
+            </h5>
+            <h5 class="text-muted card-title text-uppercase text-center">
+                QrCode Scanner
+            </h5>
+        </div>
+
     </div>
 
 </template>

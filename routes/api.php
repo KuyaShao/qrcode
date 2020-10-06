@@ -51,3 +51,9 @@ Route::get('/diaries','Api\DiaryController@index')->middleware('auth:sanctum');
 //
 Route::apiResource('scanner','ScannerController')->only(['edit','store']);
 Route::get('/logout','AuthController@logout');
+
+// Send reset password mail
+Route::post('reset-password', 'AuthController@sendPasswordResetLink');
+
+// handle reset password form process
+Route::post('reset/password', 'AuthController@callResetPassword');
