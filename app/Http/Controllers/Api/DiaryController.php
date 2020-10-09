@@ -30,4 +30,8 @@ class DiaryController extends Controller
             return new DiaryResource($collection);
         }
     }
+
+    public function create(){
+        return Auth::user();
+    }
 }

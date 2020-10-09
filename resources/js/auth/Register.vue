@@ -87,7 +87,6 @@
                                     <i v-if="showPassword === 'password'" class="fa fa-eye"></i>
                                     <i v-if="showPassword === 'text'" class="fa fa-eye-slash"></i>
                                 </button>
-
                             </div>
                             <div
                                 class="invalid-feedback"

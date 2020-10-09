@@ -10,7 +10,7 @@
                 Name: {{ names.firstName + ' ' + names.lastName }}
             </h5>
             <p class="text-muted card-title text-uppercase text-center">
-                Please Screenshot, Print or download this  QRCODE!
+                Please Screenshot and Print this  QRCODE!
             </p>
 
             <p class="text-muted card-title text-uppercase text-center">

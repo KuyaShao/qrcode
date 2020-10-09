@@ -40,7 +40,9 @@
                         @click="login" :disabled="isLoading"
                         :loading="isLoading">Login</button>
                     <div class="text-center mt-3">
-                        <a href="#" class="text-muted">Forgot Password</a>
+                        <router-link :to="{name:'reset-password'}">
+                            Forgot Password
+                        </router-link>
                     </div>
                 </div>
             </div>

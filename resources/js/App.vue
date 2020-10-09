@@ -1,7 +1,7 @@
-<template>
+`<template>
     <div>
         <nav class="navbar navbar-expand-md pink border-bottom navbar-dark">
-            <a class="navbar-brand" href="#">Mariveles QrCode Trace</a>
+            <a class="navbar-brand" href="#">Mariveles Qr Trace</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -10,6 +10,7 @@
                 <div class="ml-auto" v-if="this.$store.state.user">
                     <router-link class="btn nav-button text-center white" :to="{name:'home'}">Home</router-link>
                     <router-link class="btn nav-button text-center white" :to="{name:'diary'}">My Diary</router-link>
+                    <router-link class="btn nav-button text-center white" :to="{name:'account'}">Account</router-link>
                     <a href="/api/logout" class="btn nav-button text-center white">
                         Log out
                     </a>

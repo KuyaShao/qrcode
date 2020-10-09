@@ -23,14 +23,14 @@ class AuthController extends Controller
         } else {
             return response()->json([
                 'msg' => 'Incorrect login details'
-            ]);
+            ],401);
         }
 
         $user = Auth::user();
         if ($user->userType === 'business') {
             return response()->json([
                 'msg' => 'your logged in'
-            ]);
+            ],200);
         }else{
             Auth::logout();
             return response()->json([

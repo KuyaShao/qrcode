@@ -19,7 +19,8 @@ class Diary extends JsonResource
         return[
             'fullName' => $this->user->firstName . ' ' . $this->user->middleName . ' ' . $this->user->lastName,
             'business_name'=>$this->business_name,
-            'time'=> $timezone,
+            'userType'=>$this->user->userType,
+            'time'=> $this->created_at,
             'date'=>Carbon::parse($this->created_at)->isoFormat('MMM D YYYY'),
         ];
     }

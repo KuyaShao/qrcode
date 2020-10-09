@@ -13,7 +13,7 @@
                         <input type="number" v-model="data.temperature" class="form-control" placeholder="00.0">
                         <label for="temperature" class="text-center" >Insert Temperature</label>
                     </div>
-                    <button class="btn btn-secondary btn-block" @click="scanner" :loading="loading" :disabled="loading">Submit</button>
+                    <button class="btn btn-primary btn-block" @click="scanner" :loading="loading" :disabled="loading">Submit</button>
                 </div>
             </div>
         </div>

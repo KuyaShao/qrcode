@@ -155,8 +155,12 @@
 </template>
 
 <script>
+import Privacy from "../../components/Privacy"
     export default {
         name: "RegisterBusiness",
+        components: {
+            Privacy
+        },
         data() {
             return {
                 registerData: {

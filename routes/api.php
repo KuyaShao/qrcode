@@ -49,11 +49,13 @@ Route::post('/register','AuthController@register');
 Route::get('/name','Api\QrCodeController@names')->middleware('auth:sanctum');
 Route::get('/diaries','Api\DiaryController@index')->middleware('auth:sanctum');
 //
+Route::get('/diaries/create','Api\DiaryController@create')->middleware('auth:sanctum');
 Route::apiResource('scanner','ScannerController')->only(['edit','store']);
 Route::get('/logout','AuthController@logout');
 
+Route::get('/account','AuthController@account')->middleware('auth:sanctum');
 // Send reset password mail
 Route::post('reset-password', 'AuthController@sendPasswordResetLink');
-
+Route::post('change-password','AuthController@changepassword')->middleware('auth:sanctum');
 // handle reset password form process
 Route::post('reset/password', 'AuthController@callResetPassword');

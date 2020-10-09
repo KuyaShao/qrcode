@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\HealthDeclaration;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\AccountResource;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -81,7 +82,8 @@ class AuthController extends Controller
 
     public function sendPasswordResetLink(Request $request)
     {
-        return $this->sendResetLinkEmail($request);
+        $this->sendResetLinkEmail($request);
+        return redirect('/');
     }
 
     protected function resetPassword($user, $password)
@@ -168,5 +170,19 @@ class AuthController extends Controller
 
 
         return $user;
+    }
+
+    public function account(){
+        return new AccountResource(Auth::user());
+    }
+
+    public function changepassword(Request $request){
+         $this->validate($request,[
+            'password'=>'bail|confirmed|required|min:8',
+        ]);
+        Auth::user()->update([
+            'password'=>bcrypt($request->password)
+        ]);
+        return back();
     }
 }

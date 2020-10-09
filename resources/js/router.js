@@ -11,6 +11,7 @@ import Scanner from "./components/Scanner";
 import Diary from "./components/Diary";
 import ResetPassword from "./ResetPassword";
 import ForgetPassword from "./ForgetPassword";
+import Account from "./components/Account";
 Vue.use(VueRouter)
 
 const routes = [
@@ -72,6 +73,12 @@ const routes = [
         path: '/reset-password/:token',
         name: 'reset-password-form',
         component: ForgetPassword,
+    },
+    {
+        path: '/account',
+        name:'account',
+        component: Account,
+
     }
 
 

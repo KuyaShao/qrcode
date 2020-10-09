@@ -11,7 +11,8 @@
                                 <input type="email" id="email" class="form-control" placeholder="user@example.com"
                                        v-model="email" required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send Password Reset Link</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                            <router-link to="/" class="btn btn-secondary">Cancel</router-link>
                         </form>
                     </div>
                 </div>

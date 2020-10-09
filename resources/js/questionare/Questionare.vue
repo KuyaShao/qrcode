@@ -211,15 +211,15 @@
 
                         <div class="pt3">
                             <h6 class="text-muted">
-                                I hereby authorize Local Government Unit of Mariveles Bataan Philippines to collect and process the data indicated in this survey for the purpose of effecting control of the COVID-19 infection.
-                                I understand that my personal information is protected by RA 10173, Data Privacy Act of 2012,
-                                that I am required by RA 11469, Bayanihan to Heal As One Act,
-                                to provide truthful information, and that this health declaration is in accordance with memoranda
-                                issued by various government institutions,
-                                including the Joint Memorandum Circular No. 20-04-A Series 2020
-                                by the Department of Trade and Industry and the Department of Labor and Employment,
-                                Memorandum Circular No. 2020-004 by the Department of Tourism, and Memorandum Circular No. 2020-077
-                                by the Department of the Interior and Local Government.
+                                <p>I hereby authorize Local Government Unit of Mariveles Bataan Philippines to collect and process the data indicated in this survey for the purpose of effecting control of the COVID-19 infection.</p>
+                                <p>I understand that my personal information is protected by RA 10173, Data Privacy Act of 2012,</p>
+                                <p>that I am required by RA 11469, Bayanihan to Heal As One Act,</p>
+                                <p>to provide truthful information, and that this health declaration is in accordance with memoranda</p>
+                                <p>issued by various government institutions,</p>
+                                <p>including the Joint Memorandum Circular No. 20-04-A Series 2020</p>
+                                <p>by the Department of Trade and Industry and the Department of Labor and Employment,</p>
+                                <p>Memorandum Circular No. 2020-004 by the Department of Tourism, and Memorandum Circular No. 2020-077</p>
+                                <p>by the Department of the Interior and Local Government.</p>
                             </h6>
 
                         </div>
