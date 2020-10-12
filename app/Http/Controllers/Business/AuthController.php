@@ -63,6 +63,6 @@ class AuthController extends Controller
             'profile_id'=>$profile
         ]);
 
-        return $user;
+        return $this->guard()->login($user);
     }
 }

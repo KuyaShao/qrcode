@@ -169,7 +169,9 @@ class AuthController extends Controller
         ]);
 
 
-        return $user;
+        return $this->guard()->login($user);
+
+
     }
 
     public function account(){

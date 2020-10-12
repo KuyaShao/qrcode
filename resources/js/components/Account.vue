@@ -4,7 +4,7 @@
             <div class="card mb-4 mx-auto" style="width: 28rem;">
                 <div class="card-body">
                     <h5 class="text-center text-uppercase text-secondary">
-                        My Account
+                        Change Password
                     </h5>
                     <div class="form-group">
                         <label for="email">Email Address</label>

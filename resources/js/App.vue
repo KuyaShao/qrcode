@@ -1,7 +1,7 @@
 `<template>
     <div>
         <nav class="navbar navbar-expand-md pink border-bottom navbar-dark">
-            <a class="navbar-brand" href="#">Mariveles Qr Trace</a>
+            <a class="navbar-brand" href="#">Mariveles QrTrace</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
