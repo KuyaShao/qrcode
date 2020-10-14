@@ -7,7 +7,10 @@
         </div>
         <div class="mt-3">
             <h5 class="text-muted card-title text-uppercase text-center">
-                Name: {{ names.firstName + ' ' + names.lastName }}
+                Name: <strong>{{ names.firstName + ' ' + names.lastName }}</strong>
+            </h5>
+            <h5 class="text-muted card-title text-uppercase text-center">
+                Barangay: <strong>{{ barangay }}</strong>
             </h5>
             <p class="text-muted card-title text-uppercase text-center">
                 Please Screenshot and Print this  QRCODE!
@@ -38,7 +41,8 @@ export default {
 
             size: 300,
             loading: false,
-            names: ''
+            names: '',
+            barangay:''
         }
     },
     methods: {
@@ -51,6 +55,7 @@ export default {
         const res = await this.callApi('get', '/api/name');
         if (res.status === 200) {
             this.names = res.data.names
+            this.barangay = res.data.business.barangay
         }
 
         this.loading = false

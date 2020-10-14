@@ -24,7 +24,6 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'birthday'=>'required',
             'contact_number'=>'bail|required|numeric|min:11',
             'street'=>'required',
             'business_name'=>'',

@@ -58,7 +58,6 @@ class ProfileController extends Controller
             $businessType = $request->businessType;
         }
         $profile->update([
-            'birthday' => $request->birthday,
             'contact_number' => $request->contact_number,
             'street' => $request->street,
             'barangay' => $request->barangay,

@@ -23,21 +23,7 @@
                             {{error}}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="birthday">Birthday</label>
-                        <datepicker
-                            bootstrap-styling
-                            :format="customFormatter"
-                            v-model="profileData.birthday"
-                            :class="[{'is-invalid' :this.errorFor('birthday')}]"
-                        ></datepicker>
-                        <div
-                            class="invalid-feedback"
-                            v-for="(error,i) in this.errorFor('birthday')"
-                            :key="'Birthday' + i">
-                            {{error}}
-                        </div>
-                    </div>
+
                     <div class="form-group" v-if="userType === 'business'">
                         <label for="business_name">Business Name</label>
                         <input
@@ -109,11 +95,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="city">City</label>
+                        <label for="city">Municipality</label>
                         <input
                             type="text"
                             class="form-control"
-                            placeholder="Enter a City"
+                            placeholder="Enter a Municipality"
                             v-model="profileData.city"
                             :class="[{'is-invalid' :this.errorFor('city')}]"
                         >
@@ -155,19 +141,13 @@
 </template>
 
 <script>
-    import Datepicker from 'vuejs-datepicker'
-    import moment from 'moment'
 
     export default {
         name: "Profile",
-        components: {
-            Datepicker
-        },
         data() {
             return {
                 profileData: {
                     contact_number: null,
-                    birthday: null,
                     barangay: null,
                     city: null,
                     street: null,
@@ -184,13 +164,6 @@
         },
 
         methods: {
-            customFormatter(date) {
-                return moment(date).format('MMMM Do YYYY');
-            },
-            dates(birthday) {
-                this.profileData.birthday = birthday === null ?
-                    null : moment(birthday).format('YYYY-MM-DD');
-            },
             async profile() {
                 console.log(this.profileData.business_name)
                 if (this.userType === 'business') {
@@ -198,7 +171,6 @@
                     if (this.profileData.business_type.trim() === '') this.errors = {busines_type: ['BusinessName was required']}
                 }
                 this.loading = true
-                this.dates(this.profileData.birthday)
                 const res = await this.callApi('put', `/api/profile/${this.qid}`, this.profileData)
                 if (res.status === 200) {
                     this.s(res.data.msg)
