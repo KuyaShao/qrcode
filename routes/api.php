@@ -59,8 +59,6 @@ Route::post('reset-password', 'AuthController@sendPasswordResetLink');
 Route::post('change-password','AuthController@changepassword')->middleware('auth:sanctum');
 // handle reset password form process
 Route::post('reset/password', 'AuthController@callResetPassword');
-<<<<<<< HEAD
 
 Route::resource('encoding','Api\EncodingController')->only('store')->middleware('auth:sanctum');
-=======
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
