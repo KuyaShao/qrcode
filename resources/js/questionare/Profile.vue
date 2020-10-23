@@ -20,11 +20,11 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('contact_number')"
                             :key="'Contact Number' + i">
-<<<<<<< HEAD
+
                             {{ error }}
-=======
-                            {{error}}
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
+
+
                         </div>
                     </div>
 
@@ -42,11 +42,9 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('business_name')"
                             :key="'Street' + i">
-<<<<<<< HEAD
+
                             {{ error }}
-=======
-                            {{error}}
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
                         </div>
                     </div>
                     <div class="form-group" v-if="userType === 'business'">
@@ -60,11 +58,10 @@
                             <option value="gym">Gym</option>
                             <option value="factory">Factory</option>
                             <option value="company">Company</option>
-<<<<<<< HEAD
+
                             <option value="transportation">Transportation</option>
                             <option value="goverment">Goverment</option>
-=======
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
                             <option value="other">Other</option>
                         </select>
 
@@ -72,11 +69,9 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('business_type')"
                             :key="'Street' + i">
-<<<<<<< HEAD
+
                             {{ error }}
-=======
-                            {{error}}
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -92,7 +87,7 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('street')"
                             :key="'Street' + i">
-<<<<<<< HEAD
+
                             {{ error }}
                         </div>
                     </div>
@@ -114,12 +109,12 @@
                     </div>
 
                     <div class="form-group" v-else>
-=======
+
                             {{error}}
                         </div>
                     </div>
                     <div class="form-group">
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
                         <label for="barangay">Barangay</label>
                         <input
                             type="text"
@@ -132,16 +127,15 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('barangay')"
                             :key="'Barangay' + i">
-<<<<<<< HEAD
+
                             {{ error }}
                         </div>
                     </div>
 
-=======
                             {{error}}
                         </div>
                     </div>
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
                     <div class="form-group">
                         <label for="city">Municipality</label>
                         <input
@@ -155,11 +149,9 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('city')"
                             :key="'City' + i">
-<<<<<<< HEAD
+
                             {{ error }}
-=======
-                            {{error}}
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -175,11 +167,9 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('province')"
                             :key="'Province' + i">
-<<<<<<< HEAD
+
                             {{ error }}
-=======
-                            {{error}}
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
                         </div>
                     </div>
                     <button
@@ -190,15 +180,13 @@
                     >Save
                     </button>
                 </div>
-            </div>
-        </div>
-    </div>
+
 
 </template>
 
 <script>
 
-<<<<<<< HEAD
+
 export default {
     name: "Profile",
     data() {
@@ -311,97 +299,4 @@ label {
 .invalid-feedback {
     color: #b22222;
 }
-=======
-    export default {
-        name: "Profile",
-        data() {
-            return {
-                profileData: {
-                    contact_number: null,
-                    barangay: null,
-                    city: null,
-                    street: null,
-                    province: null,
-                    business_name: '',
-                    business_type: ''
-                },
-                contact_number: null,
-                qid: null,
-                errors: null,
-                loading: false,
-                userType: null
-            }
-        },
-
-        methods: {
-            async profile() {
-                console.log(this.profileData.business_name)
-                if (this.userType === 'business') {
-                    if (this.profileData.business_name.trim() === '') this.errors = {busines_name: ['BusinessName was required']}
-                    if (this.profileData.business_type.trim() === '') this.errors = {busines_type: ['BusinessName was required']}
-                }
-                this.loading = true
-                const res = await this.callApi('put', `/api/profile/${this.qid}`, this.profileData)
-                if (res.status === 200) {
-                    this.s(res.data.msg)
-                    if (this.userType === 'user') {
-                        window.location = '/questionare'
-                    } else {
-                        window.location = '/qrcode'
-                    }
-
-                } else {
-                    if (res.status === 422) {
-                        this.errors = res.data.errors
-                    }
-                }
-                this.loading = false
-            },
-            errorFor(field) {
-                return this.hasErrors && this.errors[field] ? this.errors[field] : null
-            }
-        },
-        computed: {
-            hasErrors() {
-                return 422 === this.status || this.errors !== null
-            },
-        },
-
-        async created() {
-            this.loading = true
-            const res = await this.callApi('get', '/api/profileShow')
-
-
-            if (res.status === 200) {
-                this.qid = res.data.qid
-                this.userType = res.data.userType
-
-
-            } else {
-                this.swr()
-            }
-
-
-            this.loading = false
-        }
-    }
-</script>
-
-<style scoped>
-    label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        color: gray;
-        font-weight: bolder;
-    }
-
-    .is-invalid {
-        border-color: #b22222;
-        background-image: none;
-    }
-
-    .invalid-feedback {
-        color: #b22222;
-    }
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
 </style>
