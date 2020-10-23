@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
     <div class="row">
+=======
+    <div  class="row">
+>>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
         <div class="col-md-8 col-sm-8 col-lg-8 mx-auto">
             <div v-if="loading">Loading...</div>
             <div v-else class="card mx-auto">
@@ -10,10 +14,14 @@
                             <qrcode-reader :value="value"></qrcode-reader>
                         </div>
                         <div v-else>
+<<<<<<< HEAD
                             <router-link class="btn btn-primary btn-block" :to="{name:'qrscanner'}">Scanner</router-link>
                             <router-link class="btn btn-primary btn-block" :to="{name:'encoding'}">Take a picture</router-link>
 
                            <!-- <qrcode-scanner></qrcode-scanner>-->
+=======
+                            <qrcode-scanner></qrcode-scanner>
+>>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
                         </div>
                     </div>
                 </div>
@@ -26,6 +34,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import QrcodeReader from "./QrcodeReader";
 import QrcodeScanner from "./QrcodeScanner";
 
@@ -123,4 +132,40 @@ export default {
 }
 
 }
+=======
+    import QrcodeReader from "./QrcodeReader";
+    import QrcodeScanner from "./QrcodeScanner";
+
+    export default {
+        name: "Home",
+        components: {
+            QrcodeReader,
+            QrcodeScanner
+        },
+        data() {
+            return {
+                value: "https://example.com",
+                size: 100,
+                userType: null,
+                loading: false
+            }
+
+        },
+        async created() {
+            this.loading = true
+            const res = await this.callApi('get', '/api/qrcode/create')
+            if (res.status === 200) {
+                this.userType = res.data.userType
+                // let currentUrl = window.location.origin +'/scanner'
+                this.value = res.data.qid
+            }
+            this.loading = false
+        }
+
+    }
+</script>
+
+<style scoped>
+
+>>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
 </style>

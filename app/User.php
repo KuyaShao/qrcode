@@ -44,10 +44,13 @@ class User extends Authenticatable
         $this->notify(new \App\Notifications\MailResetPasswordNotification($token));
     }
 
+<<<<<<< HEAD
     public function encoding(){
         return $this->hasMany(Encoding::class);
     }
 
+=======
+>>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
     public function trackers(){
         return $this->hasMany(Tracker::class);
     }
