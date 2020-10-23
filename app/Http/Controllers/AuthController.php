@@ -37,11 +37,11 @@ class AuthController extends Controller
             if ($request->path() == 'login') {
                 return redirect('/');
             }
-<<<<<<< HEAD
+
             return redirect('/qrcode');
-=======
+
             return view('welcome');
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
         }
         return redirect('/login');
     }

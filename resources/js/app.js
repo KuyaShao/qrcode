@@ -12,10 +12,7 @@ import store from "./store";
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
 Vue.use(ViewUI);
 Vue.mixin(common)
 Vue.component('main-app', require('./App.vue').default);

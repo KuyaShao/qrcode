@@ -12,14 +12,14 @@ import Diary from "./components/Diary";
 import ResetPassword from "./ResetPassword";
 import ForgetPassword from "./ForgetPassword";
 import Account from "./components/Account";
-<<<<<<< HEAD
+
 import Encoding from "./components/Encoding";
 import QrcodeScanner from "./components/QrcodeScanner";
 Vue.use(VueRouter)
-=======
+
 Vue.use(VueRouter)
 
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
 const routes = [
     {
         path:'/',
@@ -84,7 +84,7 @@ const routes = [
         path: '/account',
         name:'account',
         component: Account,
-<<<<<<< HEAD
+
     },
     {
         path: '/encoding',
@@ -96,15 +96,13 @@ const routes = [
         component: QrcodeScanner,
         name:'qrscanner'
     }
-];
-=======
 
-    }
 
 
 ];
 
->>>>>>> 6ddf25f4b8cf2afa6052c98bff8b2bccb9276bd1
+
+
 export default new VueRouter({
     mode:'history',
     routes
