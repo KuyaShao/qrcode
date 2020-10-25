@@ -18,8 +18,6 @@
 
                            <!-- <qrcode-scanner></qrcode-scanner>-->
 
-                            <qrcode-scanner></qrcode-scanner>
-
                         </div>
                     </div>
                 </div>

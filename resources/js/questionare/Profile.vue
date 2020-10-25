@@ -20,10 +20,7 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('contact_number')"
                             :key="'Contact Number' + i">
-
                             {{ error }}
-
-
 
                         </div>
                     </div>
@@ -42,9 +39,7 @@
                             class="invalid-feedback"
                             v-for="(error,i) in this.errorFor('business_name')"
                             :key="'Street' + i">
-
                             {{ error }}
-
                         </div>
                     </div>
                     <div class="form-group" v-if="userType === 'business'">
@@ -108,12 +103,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" v-else>
-
-                            {{error}}
-                        </div>
-                    </div>
-                    <div class="form-group">
+                    <div v-else class="form-group">
 
                         <label for="barangay">Barangay</label>
                         <input
@@ -132,9 +122,7 @@
                         </div>
                     </div>
 
-                            {{error}}
-                        </div>
-                    </div>
+
 
                     <div class="form-group">
                         <label for="city">Municipality</label>
@@ -180,6 +168,9 @@
                     >Save
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
 
 
 </template>

@@ -92,7 +92,7 @@ export default {
         },
         async deletePicture() {
             const res = await this.callApi('post', '/admin/users/delete-picture', this.data)
-            if (res.status == '200') {
+            if (res.status == '200' || res.status === '201') {
                 this.s('Users Profile Picture successfully Deleted')
                 this.data.pics = ''
                 this.init()
