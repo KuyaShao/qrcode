@@ -7,10 +7,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <div class="ml-auto" v-if="this.$store.state.user">
+                <div class="ml-auto" v-if="this.$store.state.user && this.$store.state.profile">
                     <router-link class="btn nav-button text-center white" :to="{name:'home'}">Home</router-link>
                     <router-link class="btn nav-button text-center white" :to="{name:'diary'}">My Diary</router-link>
-                    <router-link class="btn nav-button text-center white" :to="{name:'account'}">Account</router-link>
+                    <router-link class="btn nav-button text-center white" :to="{name:'account'}">Settings</router-link>
+                    <router-link class="btn nav-button text-center white" :to="{name:'policy'}">Privacy Policy</router-link>
                     <a href="/api/logout" class="btn nav-button text-center white">
                         Log out
                     </a>
@@ -31,7 +32,8 @@
             isLogin: false
         }),
         created() {
-            this.$store.dispatch('userObj', this.user)
+            this.$store.dispatch('userObj', this.user),
+            this.$store.dispatch('profileObj',this.user.profiles.city)
         }
     }
 </script>

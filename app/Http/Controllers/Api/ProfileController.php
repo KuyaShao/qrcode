@@ -22,7 +22,8 @@ class ProfileController extends Controller
         if ($profiles->city === null) {
             return view('welcome');
         }
-        return redirect('/qrCode/');
+
+        return redirect('/qrcode');
     }
 
     public function profileShow()

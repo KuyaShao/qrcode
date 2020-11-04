@@ -41,7 +41,7 @@
                 this.loading = true
                 const res = await this.callApi('post','/api/scanner',this.data)
                 if(res.status === 200 || res.status === 201){
-                    window.location = '/qrcode'
+                    window.location = '/qrscanner'
                 }else{
                     if(res.status === 422){
                         for(let i in res.data.errors){

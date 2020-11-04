@@ -8,11 +8,13 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\AccountResource;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Hash;
+use App\Events\NewMessage;
 use Illuminate\Auth\Events\PasswordReset;
 
 class AuthController extends Controller
@@ -170,7 +172,7 @@ class AuthController extends Controller
         HealthDeclaration::create([
             'profile_id' => $profile
         ]);
-
+        event(new NewMessage('1'));
 
         return $this->guard()->login($user);
 

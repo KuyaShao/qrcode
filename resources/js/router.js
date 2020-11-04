@@ -15,6 +15,7 @@ import Account from "./components/Account";
 
 import Encoding from "./components/Encoding";
 import QrcodeScanner from "./components/QrcodeScanner";
+import Policy from "./components/Policy";
 Vue.use(VueRouter)
 
 Vue.use(VueRouter)
@@ -95,6 +96,11 @@ const routes = [
         path:'/qrscanner',
         component: QrcodeScanner,
         name:'qrscanner'
+    },
+    {
+        path: '/policy',
+        component: Policy,
+        name: 'policy'
     }
 
 

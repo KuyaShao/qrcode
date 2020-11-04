@@ -232,7 +232,7 @@ export default {
             if (res.status === 200) {
                 this.s(res.data.msg)
                 if (this.userType === 'user') {
-                    window.location = '/questionare'
+                    this.$router.push('questionare')
                 } else {
                     window.location = '/qrcode'
                 }

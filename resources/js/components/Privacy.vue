@@ -10,7 +10,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h6 class="text-uppercase text-bold">DATA PRIVACY CONSENT</h6>
+                    <h3 class="text-uppercase text-bold">DATA PRIVACY CONSENT</h3>
 
 
                     <p>I understand and concur that by clicking the “I Agree to the Privacy Notice and Give my Consent”, I confirm that I freely and voluntarily give consent to the collection and processing of my data, which may include personal information and/or sensitive information set out in this registration and application possessed by Local Government of Mariveles.

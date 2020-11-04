@@ -6,7 +6,13 @@
                 <div class="card-body">
                     <div class="text-center mt-3">
                         <h1 class="text-center">Take a Picture</h1>
-                        <div>
+                        <div v-if="data.pics.trim() !=''">
+                            <img :src="`${data.pics}`" alt="No Picture" class="feed">
+                            <div class="space text-center">
+                                <button type="primary" @click="deletePicture">Delete Picture</button>
+                            </div>
+                        </div>
+                        <div v-else>
 
                             <div class="camera">
                                 <p class="text-left" style="color: red;">Note: Take a picture of your hard copy form</p>
@@ -59,9 +65,6 @@ export default {
                             min: 360,
                             ideal: 720,
                             max: 1080
-                        },
-                        facingMode: {
-                            exact: 'environment'
                         }
                     }
                 }
@@ -74,7 +77,7 @@ export default {
 
                     })
             } else {
-               this.swr()
+                console.log('Cant Open Media')
             }
         },
         takePicture() {
@@ -87,10 +90,25 @@ export default {
             this.data.picture = dataUri
 
         },
-
+        async deletePicture() {
+            const res = await this.callApi('post', '/admin/users/delete-picture', this.data)
+            if (res.status == '200' || res.status === '201') {
+                this.s('Users Profile Picture successfully Deleted')
+                this.data.pics = ''
+                this.init()
+            } else {
+                if (res.status == '422') {
+                    for (let i in res.data.errors) {
+                        this.e(res.data.errors[i][0])
+                    }
+                } else {
+                    this.swr()
+                }
+            }
+        },
         async savePicture() {
             const res = await this.callApi('post', '/api/encoding', this.data);
-            if (res.status == '200' || res.status === '201') {
+            if (res.status == '200') {
                 this.s('Users Profile Picture successfully Updated ')
                 this.data.pics = this.data.picture
             } else {
