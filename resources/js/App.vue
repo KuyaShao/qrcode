@@ -8,7 +8,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <div class="ml-auto" v-if="this.$store.state.user && this.$store.state.profile">
-                    <router-link class="btn nav-button text-center white" :to="{name:'home'}">Home</router-link>
+                    <a href="/qrcode" class="btn nav-button text-center white" >Home</a>
                     <router-link class="btn nav-button text-center white" :to="{name:'diary'}">My Diary</router-link>
                     <router-link class="btn nav-button text-center white" :to="{name:'account'}">Settings</router-link>
                     <router-link class="btn nav-button text-center white" :to="{name:'policy'}">Privacy Policy</router-link>
